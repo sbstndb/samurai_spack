@@ -3,10 +3,12 @@ from spack import *
 
 class Samurai(CMakePackage):
 
-    homepage = "https://initiative-hpc-maths.gitlab.labos.polytechnique.fr/site/pages/samurai.html"
-    url = "https://github.com/hpc-maths/samurai"
+    """Description Samurai"""
 
-    version('main', git=url)
+    homepage = "https://github.com/hpc-maths/samurai"
+    url = "https://github.com/hpc-maths/samurai.git"
+
+    version('master', git=url)
 
     def cmake_args(self):
         spec = self.spec
