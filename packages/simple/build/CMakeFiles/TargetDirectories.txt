@@ -1,3 +1,0 @@
-/home/sbstndbs/samurai_spack/simple/build/CMakeFiles/hello.dir
-/home/sbstndbs/samurai_spack/simple/build/CMakeFiles/edit_cache.dir
-/home/sbstndbs/samurai_spack/simple/build/CMakeFiles/rebuild_cache.dir
