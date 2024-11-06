@@ -18,10 +18,11 @@ class Samurai(CMakePackage):
     depends_on('pugixml')
     depends_on('fmt')
     depends_on('nlohmann-json')
-    depends_on('hdf5')
+    depends_on('hdf5~mpi')
+#    depends_on('hdf5')
 #    depends_on('hdf5~mpi', when='~mpi')
 #    depends_on('hdf5+mpi', when="+mpi")
-    depends_on('boost')
+    depends_on('boost~mpi')
 
 
 #    variant('mpi',      default=False, description="Enable MPI support")
