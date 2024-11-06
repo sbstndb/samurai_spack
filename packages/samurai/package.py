@@ -12,18 +12,19 @@ class Samurai(CMakePackage):
 
 
     depends_on('xtl')
-    dpeends_on('xsimd')
+    depends_on('xsimd')
     depends_on('xtensor')
     depends_on('highfive')
-    depends_on('highfive')
-    dpeends_on('pugixml')
-    dpeends_on('fmt')
+    depends_on('pugixml')
+    depends_on('fmt')
     depends_on('nlohmann-json')
     depends_on('hdf5')
+#    depends_on('hdf5~mpi', when='~mpi')
+#    depends_on('hdf5+mpi', when="+mpi")
     depends_on('boost')
 
 
-    variant('mpi',      default=False, description="Enable MPI support")
+#    variant('mpi',      default=False, description="Enable MPI support")
     variant('openmp',   default=False, description="Enable OpenMP support")
     variant('demos',    default=False, description="Build Demos")
     variant('benchmarks',default=False,description="Build benchmarks")
@@ -35,9 +36,24 @@ class Samurai(CMakePackage):
         spec = self.spec
         options = [
 #            "-DBUILD_DEMOS=ON"
-
                 ]
+
+        options.append(self.define_from_variant("BUILD_DEMOS", "demos"))
+        options.append(self.define_from_variant("BUILD_BENCHMARKS", "benchmarks"))
+        options.append(self.define_from_variant("BUILD_TESTS","tests"))
+        options.append(self.define_from_variant("SAMURAI_CHECK_NAN", "check_nan"))
+
+    # MPI support
+#        if '+mpi' in spec : 
+#            options.append(self.define_from_variant("WITH_MPI", True))
+#            options.append(self.define("HDF5_IS_PARALLEL", True)) ## !!! reflechir sur la dependance HDF5 --> hdf mpi obligatoire ? 
+
+    # OpenMP support
+#        if '+openmp' in spec :
+#            options.append(self.define_from_variant("WITH_OPENMP", True))
+
+        options.append("-DFLUX_CONTAINER=xtensor") ## !!! je ne comprends pas encore ça
+
+
         return options
     
-
-'
