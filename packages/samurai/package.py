@@ -10,10 +10,9 @@ class Samurai(CMakePackage):
 
     version('master', git=url)
 
-
-    depends_on('xtl')
-    depends_on('xsimd')
-    depends_on('xtensor')
+    depends_on('xtl@0.7.5')
+    depends_on('xsimd@11.0.0')
+    depends_on('xtensor@0.25.0 +xsimd ~tbb')
     depends_on('highfive')
     depends_on('pugixml')
     depends_on('fmt')
