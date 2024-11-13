@@ -3,7 +3,7 @@ from spack import *
 
 class Samurai(CMakePackage):
 
-    """Description Samurai"""
+    """Intervals coupled with algebra of set to handle adaptive mesh refinement and operators on it"""
 
     homepage = "https://github.com/hpc-maths/samurai"
     url = "https://github.com/hpc-maths/samurai.git"
@@ -17,14 +17,13 @@ class Samurai(CMakePackage):
     depends_on('pugixml')
     depends_on('fmt')
     depends_on('nlohmann-json')
-    depends_on('hdf5~mpi')
-#    depends_on('hdf5')
-#    depends_on('hdf5~mpi', when='~mpi')
-#    depends_on('hdf5+mpi', when="+mpi")
-    depends_on('boost~mpi')
+    depends_on('hdf5~mpi', when='~mpi')
+    depends_on('hdf5+mpi', when='+mpi')    
+    depends_on('boost~mpi', when='~mpi')
+    depends_on('boost+mpi', when='+mpi')
 
 
-#    variant('mpi',      default=False, description="Enable MPI support")
+    variant('mpi',      default=False, description="Enable MPI support")
     variant('openmp',   default=False, description="Enable OpenMP support")
     variant('demos',    default=False, description="Build Demos")
     variant('benchmarks',default=False,description="Build benchmarks")
@@ -44,15 +43,15 @@ class Samurai(CMakePackage):
         options.append(self.define_from_variant("SAMURAI_CHECK_NAN", "check_nan"))
 
     # MPI support
-#        if '+mpi' in spec : 
-#            options.append(self.define_from_variant("WITH_MPI", True))
-#            options.append(self.define("HDF5_IS_PARALLEL", True)) ## !!! reflechir sur la dependance HDF5 --> hdf mpi obligatoire ? 
+        if '+mpi' in spec : 
+            options.append(self.define_from_variant("WITH_MPI", "mpi"))
+            options.append(self.define("HDF5_IS_PARALLEL", True)) ## !!! reflechir sur la dependance HDF5 --> hdf mpi obligatoire ? 
 
     # OpenMP support
-#        if '+openmp' in spec :
-#            options.append(self.define_from_variant("WITH_OPENMP", True))
+        if '+openmp' in spec :
+            options.append(self.define_from_variant("WITH_OPENMP", "openmp"))
 
-        options.append("-DFLUX_CONTAINER=xtensor") ## !!! je ne comprends pas encore ça
+#        options.append("-DFLUX_CONTAINER=xtensor") 
 
 
         return options
