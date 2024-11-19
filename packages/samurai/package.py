@@ -17,7 +17,7 @@ class Samurai(CMakePackage):
     depends_on('pugixml')
     depends_on('fmt')
     depends_on('nlohmann-json')
-    depends_on('cli11'
+    depends_on('cli11')
     depends_on('hdf5~mpi', when='~mpi')
     depends_on('hdf5+mpi', when='+mpi')    
     depends_on('boost~mpi', when='~mpi')
