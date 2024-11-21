@@ -18,6 +18,12 @@ class Samurai(CMakePackage):
     depends_on('fmt')
     depends_on('nlohmann-json')
     depends_on('cli11')
+
+    # option in future release
+    depends_on('cxxopts')
+    depends_on('cgal')
+    depends_on('petsc')
+
     depends_on('hdf5~mpi', when='~mpi')
     depends_on('hdf5+mpi', when='+mpi')    
     depends_on('boost~mpi', when='~mpi')
