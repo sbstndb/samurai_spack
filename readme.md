@@ -36,6 +36,9 @@ spack install samurai +openmp +demos %gcc@14
 spack load samurai
 ```
 
-
+7. Unload your Samurai recipe:
+```bash
+spack unload samurai
+```
 
 
