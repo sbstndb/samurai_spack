@@ -38,6 +38,14 @@ class Samurai(CMakePackage):
     variant("check_nan",default=False, description="Check for Nan in computations")
 
 
+    def setup_dependent_build_environment(self, env, dependent_spec):
+        include_path = self.spec.prefix.include
+        env.append_path('CXXFLAGS', f'-I{include_path}')
+
+    def setup_run_environment(self, env):
+        env.prepend_path('CPATH', self.spec.prefix.include)
+
+
     def cmake_args(self):
         spec = self.spec
         options = [
